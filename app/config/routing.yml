@@ -1,0 +1,5 @@
+tspycher_thirtieth_birthday:
+    resource: "@TspycherThirtiethBirthdayBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
