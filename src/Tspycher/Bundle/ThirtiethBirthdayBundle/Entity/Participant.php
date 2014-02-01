@@ -51,7 +51,7 @@ class Participant
     /**
      * @param mixed $people
      */
-    public function setPeople($people)
+    public function setPeople(People $people)
     {
         $this->people = $people;
     }

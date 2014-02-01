@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Gift
  *
- * @ORM\Table()
+ * @ORM\Table(name="gifts")
  * @ORM\Entity(repositoryClass="Tspycher\Bundle\ThirtiethBirthdayBundle\Entity\GiftRepository")
  */
 class Gift

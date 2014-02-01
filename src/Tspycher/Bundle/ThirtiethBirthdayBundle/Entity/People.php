@@ -97,4 +97,22 @@ class People
     {
         return $this->email;
     }
+
+    /**
+     * @param mixed $participant
+     */
+    public function setParticipant(Participant $participant)
+    {
+        $this->participant = $participant;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParticipant()
+    {
+        return $this->participant;
+    }
+
+
 }
