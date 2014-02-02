@@ -32,7 +32,12 @@ class PeopleTest extends AbstractEntityTest
         #\Doctrine\Common\Util\Debug::dump($d);
 
         $r2 = $this->em->getRepository('TspycherThirtiethBirthdayBundle:Participant');
-        \Doctrine\Common\Util\Debug::dump($r2->findOneByCode($x->getCode()), 3);
+        #\Doctrine\Common\Util\Debug::dump($r2->findOneByCode($x->getCode()), 4);
+
+
+        #\Doctrine\Common\Util\Debug::dump($r->findOneBy(array()), 3);
+
+        \Doctrine\Common\Util\Debug::dump($r2->getByCode($x->getCode()), 4);
 
     }
 

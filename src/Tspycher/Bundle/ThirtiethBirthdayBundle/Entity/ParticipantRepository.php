@@ -12,4 +12,8 @@ use Doctrine\ORM\EntityRepository;
  */
 class ParticipantRepository extends EntityRepository
 {
+
+    public function getByCode($code) {
+        return $this->findOneBy(array('code'=>$code));
+    }
 }
