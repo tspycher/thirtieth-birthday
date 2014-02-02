@@ -28,7 +28,7 @@ class Participant
      */
     private $numberOfSeats;
 
-    /** @ORM\OneToOne(targetEntity="People") */
+    /** @ORM\OneToOne(targetEntity="People", cascade={"persist"}, inversedBy="participant") */
     private $people;
 
     /**
@@ -92,7 +92,7 @@ class Participant
      */
     public function createCode()
     {
-        $this->code = strtoupper(dechex(sprintf("%s%s",rand(1000,9999),$this-id)));
+        $this->code = strtoupper(dechex(sprintf("%s%s",rand(10000,99999),$this->id)));
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace Tspycher\Bundle\ThirtiethBirthdayBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * Gift
@@ -21,6 +23,13 @@ class Gift
      */
     private $id;
 
+    /** @ORM\OneToMany(targetEntity="Donate", mappedBy="gift") */
+    private $donators;
+
+    function __construct()
+    {
+        $this->donators = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -31,4 +40,14 @@ class Gift
     {
         return $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDonators()
+    {
+        return $this->donators;
+    }
+
+
 }

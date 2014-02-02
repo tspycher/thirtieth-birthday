@@ -21,10 +21,10 @@ class Donate
      */
     private $id;
 
-    /** @ORM\OneToOne(targetEntity="People") */
+    /** @ORM\OneToOne(targetEntity="People", inversedBy="donate") */
     private $people;
 
-    /** @ORM\ManyToOne(targetEntity="Gift") */
+    /** @ORM\ManyToOne(targetEntity="Gift", inversedBy="donators") */
     private $gift;
 
     /**

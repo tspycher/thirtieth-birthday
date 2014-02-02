@@ -41,6 +41,10 @@ class People
      */
     private $participant;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Donate", mappedBy="people")
+     */
+    private $donate;
 
     /**
      * Get id
@@ -101,10 +105,10 @@ class People
     /**
      * @param mixed $participant
      */
-    public function setParticipant(Participant $participant)
+    /*public function setParticipant(Participant $participant)
     {
         $this->participant = $participant;
-    }
+    }*/
 
     /**
      * @return mixed
@@ -113,6 +117,16 @@ class People
     {
         return $this->participant;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDonate()
+    {
+        return $this->donate;
+    }
+
+
 
 
 }
