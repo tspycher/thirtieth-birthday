@@ -17,10 +17,11 @@ class ParticipantsController extends Controller {
 
     /**
      * @Rest\View
-     * @Route("/participants")
+     * @Route("/participants", defaults={ "_format" = "json" })
      */
     public function postParticipantsAction(Request $request)
     {
+        $x = $request->getContent();
         return array( 'data' => "blubb");
     }
 }
