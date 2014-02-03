@@ -29,6 +29,16 @@ class LoadGiftData extends AbstractFixture implements OrderedFixtureInterface
 
         $manager->persist($gift);
         $manager->flush();
+
+        $gift = new Gift();
+        $gift->setPrice(1200);
+        $gift->setUrl("http://nikon.ch");
+        $gift->setName("Nikon EF 70-200mm f/2.8L II USM");
+        $gift->setPictureUrl("http://nikon.ch");
+
+
+        $manager->persist($gift);
+        $manager->flush();
     }
 
     /**

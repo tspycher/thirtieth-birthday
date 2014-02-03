@@ -7,7 +7,12 @@
     {% verbatim %}
     <div ng-app>
         <div ng-controller="Test">
-            Nothing here {{'yet' + '!'}} {{ greeting.text }}
+            Nothing here {{'yet' + '!'}}
+            <ul>
+                <li ng-repeat="gift in gifts">
+                    {{ gift.name }}
+                </li>
+            </ul>
         </div>
     </div>
     {% endverbatim %}

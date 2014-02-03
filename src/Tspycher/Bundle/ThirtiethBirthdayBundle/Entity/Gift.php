@@ -5,6 +5,8 @@ namespace Tspycher\Bundle\ThirtiethBirthdayBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+
 
 
 /**
@@ -12,6 +14,7 @@ use JMS\Serializer\Annotation\Expose;
  *
  * @ORM\Table(name="gifts")
  * @ORM\Entity(repositoryClass="Tspycher\Bundle\ThirtiethBirthdayBundle\Entity\GiftRepository")
+ * @ExclusionPolicy("all")
  */
 class Gift
 {
@@ -39,6 +42,7 @@ class Gift
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Expose
      */
     private $name;
 
@@ -46,6 +50,7 @@ class Gift
      * @var string
      *
      * @ORM\Column(name="picture_url", type="string", length=255)
+     * @Expose
      */
     private $pictureUrl;
 
@@ -53,6 +58,7 @@ class Gift
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255)
+     * @Expose
      */
     private $url;
 
