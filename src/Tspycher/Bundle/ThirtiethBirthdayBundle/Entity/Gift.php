@@ -4,6 +4,7 @@ namespace Tspycher\Bundle\ThirtiethBirthdayBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation\Expose;
 
 
 /**
@@ -20,6 +21,7 @@ class Gift
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
@@ -29,6 +31,7 @@ class Gift
     /**
      * @var
      * @ORM\Column(name="price", type="integer")
+     * @Expose
      */
     private $price;
 
@@ -140,5 +143,47 @@ class Gift
         return $this->url;
     }
 
+    /**
+     * Returns difference between donated and price of gift
+     *
+     * @return mixed
+     */
+    public function getOpen() {
+        $x = $this->price;
+        foreach($this->donators as $d) {
+            $x -= $d->getAmount();
+        }
+        return $x;
+    }
 
+    /**
+     * Returns amount of donated value
+     *
+     * @return int
+     */
+    public function getDonated() {
+        $x = 0;
+        foreach($this->donators as $d) {
+            $x += $d->getAmount();
+        }
+        return $x;
+    }
+
+    /**
+     * Returns number of donators
+     *
+     * @return int
+     */
+    public function getDonatorsCount() {
+        return $this->donators->count();
+    }
+
+    /**
+     * Returns array with donation statistics
+     *
+     * @return array
+     */
+    public function getDonationStats() {
+        return array("donated" => $this->getDonated(), "donators" => $this->getDonatorsCount(), "open" => $this->getOpen());
+    }
 }

@@ -27,9 +27,17 @@ class PeopleTest extends AbstractEntityTest
         $x = $r->findOneBy(array());
         #\Doctrine\Common\Util\Debug::dump($x, 4);
 
-        \Doctrine\Common\Util\Debug::dump($r2->getByCode($x->getParticipant()->getCode()), 4);
+        #\Doctrine\Common\Util\Debug::dump($r2->getByCode($x->getParticipant()->getCode()), 4);
 
     }
 
+    public function testGiftDonations() {
+        $r = $this->em->getRepository('TspycherThirtiethBirthdayBundle:Gift');
+        $x = $r->findOneBy(array());
+        $stats = $x->getDonationStats();
+        $this->assertEquals($stats['donated'], 2200);
+        $this->assertEquals($stats['open'], 900);
+        $this->assertEquals($stats['donators'], 11);
 
+    }
 }

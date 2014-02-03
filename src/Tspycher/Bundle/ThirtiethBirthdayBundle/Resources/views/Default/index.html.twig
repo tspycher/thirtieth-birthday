@@ -1,1 +1,15 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+
+{% block title %}My cool blog posts{% endblock %}
+
+{% block body %}
+    {{ name }}
+    {% verbatim %}
+    <div ng-app>
+        <div ng-controller="Test">
+            Nothing here {{'yet' + '!'}} {{ greeting.text }}
+        </div>
+    </div>
+    {% endverbatim %}
+
+{% endblock %}

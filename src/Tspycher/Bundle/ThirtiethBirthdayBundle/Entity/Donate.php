@@ -112,8 +112,4 @@ class Donate
     {
         return $this->message;
     }
-
-
-
-
 }

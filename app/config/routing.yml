@@ -3,3 +3,9 @@ tspycher_thirtieth_birthday:
     type:     annotation
     prefix:   /
 
+api_gifts:
+    resource: "Tspycher\Bundle\ThirtiethBirthdayBundle\ApiController\GiftsController"
+    type:     rest
+    prefix:   /api/
+
+

@@ -20,7 +20,7 @@ class LoadGiftData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $gift = new Gift();
-        $gift->setPrice(2200);
+        $gift->setPrice(3100);
         $gift->setUrl("http://canon.ch");
         $gift->setName("Canon EF 70-200mm f/2.8L II USM");
         $gift->setPictureUrl("http://canon.ch");
