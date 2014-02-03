@@ -6,14 +6,39 @@
     {{ name }}
     {% verbatim %}
     <div ng-app>
-        <div ng-controller="Test">
-            Nothing here {{'yet' + '!'}}
-            <ul>
-                <li ng-repeat="gift in gifts">
-                    {{ gift.name }}
-                </li>
-            </ul>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="panel panel-default" ng-controller="ParticipantController">
+                    <div class="panel-body">
+                        <div class="input-group">
+                            {{ message }}
+                            <input type="text" class="form-control" placeholder="Name">
+                            <input type="text" class="form-control" placeholder="Anzahl Personen">
+                            <input type="text" class="form-control" placeholder="Email">
+
+                            <button type="submit" ng-click="doPartipate()" class="btn btn-default">Submit</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+
+                <div class="panel panel-default" ng-controller="GiftController">
+                    Nothing here {{'yet' + '!'}}
+                    <ul>
+                        <li ng-repeat="gift in gifts">
+                            {{ gift.name }}
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
+
+
+
+
     </div>
     {% endverbatim %}
 

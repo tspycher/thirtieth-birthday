@@ -4,8 +4,11 @@ tspycher_thirtieth_birthday:
     prefix:   /
 
 api_gifts:
-    resource: "Tspycher\Bundle\ThirtiethBirthdayBundle\ApiController\GiftsController"
+    resource: '\Tspycher\Bundle\ThirtiethBirthdayBundle\ApiController\GiftsController'
     type:     rest
     prefix:   /api/
 
-
+api_participants:
+    resource: '\Tspycher\Bundle\ThirtiethBirthdayBundle\ApiController\ParticipantsController'
+    type:     rest
+    prefix:   /api/
