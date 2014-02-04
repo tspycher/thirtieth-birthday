@@ -31,6 +31,13 @@ class PeopleTest extends AbstractEntityTest
 
     }
 
+    public function testCount() {
+        $r = $this->em->getRepository('TspycherThirtiethBirthdayBundle:Participant');
+        $x = $r->count();
+        \Doctrine\Common\Util\Debug::dump($x, 1);
+
+    }
+
     public function testGiftDonations() {
         $r = $this->em->getRepository('TspycherThirtiethBirthdayBundle:Gift');
         $x = $r->findOneBy(array());

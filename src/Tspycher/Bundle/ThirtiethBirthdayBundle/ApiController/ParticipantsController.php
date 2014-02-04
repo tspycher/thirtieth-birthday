@@ -21,7 +21,38 @@ class ParticipantsController extends Controller {
      */
     public function postParticipantsAction(Request $request)
     {
-        $x = $request->getContent();
-        return array( 'data' => "blubb");
+        $x = json_decode($request->getContent(), true);
+        $r = $this->getDoctrine()->getRepository('TspycherThirtiethBirthdayBundle:People');
+
+        if($x['id_participant'] != 0 and $x['id_people'] != 0) {
+            // Edit existing
+            $y = $r->participate($x['email'], $x['name'], $x['numPlaces'], $x['id_participant'], $x['id_people']);
+        } else {
+            // Create new
+            $y = $r->participate($x['email'], $x['name'], $x['numPlaces']);
+        }
+        return $y;
+    }
+
+    /**
+     * @Rest\View
+     * @Route("/participants/{token}")
+     */
+    public function getParticipantAction($token) {
+        $r = $this->getDoctrine()->getRepository('TspycherThirtiethBirthdayBundle:Participant');
+        return $r->getByCode($token);
+        #return array("count" => );
+
+    }
+
+    /**
+     * @Rest\View
+     * @Route("/participantscount")
+     */
+    public function getParticipantsCountAction() {
+        $r = $this->getDoctrine()->getRepository('TspycherThirtiethBirthdayBundle:Participant');
+        return $r->count();
+        #return array("count" => );
+
     }
 }

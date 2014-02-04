@@ -41,14 +41,21 @@ class PeopleRepository extends EntityRepository
         return $d;
     }
 
-    public function participate($email, $name, $numSeats) {
-        $p = new People();
+    public function participate($email, $name, $numSeats, $id_participant = null, $id_people = null) {
+        if(!is_null($id_participant) and !is_null($id_people) ) {
+            $p = $this->find($id_people);
+            $pa = $this->getEntityManager()->getRepository('TspycherThirtiethBirthdayBundle:Participant')->find($id_participant);
+        } else {
+            $p = new People();
+            $pa = new Participant();
+            $pa->createCode();
+        }
+
         $p->setName($name);
         $p->setEmail($email);
-        $pa = new Participant();
+
         $pa->setNumberOfSeats($numSeats);
         $pa->setPeople($p);
-        $pa->createCode();
 
         $this->getEntityManager()->persist($pa);
         $this->getEntityManager()->flush();

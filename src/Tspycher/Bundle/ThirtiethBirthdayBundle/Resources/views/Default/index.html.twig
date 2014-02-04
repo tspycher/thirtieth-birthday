@@ -5,32 +5,77 @@
 {% block body %}
     {{ name }}
     {% verbatim %}
+
     <div ng-app>
-        <div class="row">
+        <div class="row" ng-controller="ParticipantController">
+            <p>Anzahl Personen: {{ seatsCount }} in {{ participants }} Anmeldungen</p>
+
             <div class="col-xs-6">
-                <div class="panel panel-default" ng-controller="ParticipantController">
+                <div class="panel panel-default" >
+
                     <div class="panel-body">
                         <div class="input-group">
                             {{ message }}
-                            <input type="text" class="form-control" placeholder="Name" ng-model="name">
-                            <input type="text" class="form-control" placeholder="Anzahl Personen">
-                            <input type="text" class="form-control" placeholder="Email">
+                            <form>
+                            <input type="hidden" class="form-control" placeholder="Name" ng-model="register.id_people">
+                            <input type="hidden" class="form-control" placeholder="Name" ng-model="register.id_participant">
+
+                            <input type="text" class="form-control" placeholder="Name" ng-model="register.name" name="register.name">
+                            <input type="text" class="form-control" placeholder="Anzahl Personen" ng-model="register.numPlaces">
+                            <input type="text" class="form-control" placeholder="Email" ng-model="register.email">
+
+
+                            <div class="col-lg-6">
+                                <div class="list-group">
+                                    <div class="list-group-item" ng-repeat="gift in gifts">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="register.giftId" id="optionsRadios2" value="{{ gift.id }}">
+                                                <h4 class="list-group-item-heading">{{ gift.name }}</h4>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="list-group-item">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="register.giftId" id="optionsRadios2" value="0">
+                                                <h4 class="list-group-item-heading">Ich wähle selber</h4>
+                                            </label>
+                                        </div>
+                                        <p class="list-group-item-text">Das geht natürlich auch :)</p>
+                                    </div>
+
+
+                                </div>
+                                <input type="text" class="form-control" ng-model="register.giftAmount" placeholder="CHF">
+
+                            </div><!-- /.col-lg-6 -->
 
                             <button type="submit" ng-click="doPartipate()" class="btn btn-default">Submit</button>
-
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-xs-6">
 
-                <div class="panel panel-default" ng-controller="GiftController">
-                    Nothing here {{'yet' + '!'}}
-                    <ul>
-                        <li ng-repeat="gift in gifts">
-                            {{ gift.name }}
-                        </li>
-                    </ul>
+                <div class="panel panel-default">
+                    <div>
+
+                        <div ng-show="token">
+                            Cooool, danke für die Anmeldung. Merke dir bitte diesen Code
+                            <div>
+                                {{ token }}
+                            </div>
+                            Mit dem kannst du dich hier wieder anmelden und Daten ändern.
+                        </div>
+                        <div ng-hide="token">
+                            <input type="text" class="form-control" ng-model="login.token" placeholder="Token">
+                            <button type="submit" ng-click="doLoadPartipate()" class="btn btn-default">Load</button>
+
+                        </div>
+                    </div>
+
                 </div>
 
             </div>

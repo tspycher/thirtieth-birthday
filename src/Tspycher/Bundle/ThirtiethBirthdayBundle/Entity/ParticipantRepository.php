@@ -16,4 +16,12 @@ class ParticipantRepository extends EntityRepository
     public function getByCode($code) {
         return $this->findOneBy(array('code'=>$code));
     }
+
+    public function count() {
+        $x = 0;
+        foreach($this->findAll() as $p)
+            $x += $p->getNumberOfSeats();
+
+        return array('seats' => $x, 'participants' => count($this->findAll()));
+    }
 }
