@@ -1,57 +1,87 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}My cool blog posts{% endblock %}
+{% block title %}Bald 30ig{% endblock %}
 
 {% block body %}
-    {{ name }}
     {% verbatim %}
+    <div ng-app ng-controller="ParticipantController">
+        <div class="row" >
 
-    <div ng-app>
-        <div class="row" ng-controller="ParticipantController">
-            <p>Anzahl Personen: {{ seatsCount }} in {{ participants }} Anmeldungen</p>
+            <h1>Mein 30igster Geburtstag</h1>
+
+            <p class="lead">Aktuell kommen {{ seatsCount }} Leute in total {{ participants }} Anmeldungen.</p>
+
 
             <div class="col-xs-6">
                 <div class="panel panel-default" >
 
                     <div class="panel-body">
                         <div class="input-group">
-                            {{ message }}
+                            <div class="alert alert-{{ messageType }}" ng-show="{{ messageType }}">{{ message }}</div>
                             <form>
-                            <input type="hidden" class="form-control" placeholder="Name" ng-model="register.id_people">
-                            <input type="hidden" class="form-control" placeholder="Name" ng-model="register.id_participant">
+                                <input type="hidden" class="form-control" placeholder="Name" ng-model="register.id_people">
+                                <input type="hidden" class="form-control" placeholder="Name" ng-model="register.id_participant">
 
-                            <input type="text" class="form-control" placeholder="Name" ng-model="register.name" name="register.name">
-                            <input type="text" class="form-control" placeholder="Anzahl Personen" ng-model="register.numPlaces">
+                                <div class="form-group">
+                                    <label for="name">Wer bist du?</label>
+                                    <input id="name" type="text" class="form-control" placeholder="Name" ng-model="register.name" name="register.name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Wieviele seid Ihr?</label>
+                                    <input type="text" class="form-control" placeholder="Anzahl Personen" ng-model="register.numPlaces">
+                                </div>
+
                             <input type="text" class="form-control" placeholder="Email" ng-model="register.email">
 
-
-                            <div class="col-lg-6">
-                                <div class="list-group">
-                                    <div class="list-group-item" ng-repeat="gift in gifts">
-                                        <div class="radio">
-                                            <label>
+                                <div ng-repeat="gift in gifts">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="radio">
                                                 <input type="radio" ng-model="register.id_gift" name="register.id_gift" id="optionsRadios2" value="{{ gift.id }}">
-                                                <h4 class="list-group-item-heading">{{ gift.name }}</h4>
-                                            </label>
+
+                                                <div class="media">
+                                                    <a class="pull-left" href="#">
+                                                        <img src="{{ gift.picture_url }}" alt="{{ gift.name }} Picture" class="img-circle media-object img-gift">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">{{ gift.name }}</h4>
+                                                        <button class="btn btn-primary" data-toggle="modal" data-target=".bs-modal-lg" ng-click="loadDetails(gift.url)">mehr...</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="list-group-item">
+
+                                    <div class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                {{ giftDetails }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
                                         <div class="radio">
                                             <label>
                                                 <input type="radio" ng-model="register.id_gift" name="register.giftId" id="optionsRadios2" value="0">
-                                                <h4 class="list-group-item-heading">Ich wähle selber</h4>
+                                                <h4>Ich wähle selber</h4>
                                             </label>
                                         </div>
                                         <p class="list-group-item-text">Das geht natürlich auch :)</p>
                                     </div>
-
-
                                 </div>
-                                <input type="text" class="form-control" ng-model="register.giftAmount" placeholder="CHF">
+                                <div class="form-group">
+                                    <label for="giftAmount">Beteiligung</label>
+                                    <input id="giftAmount" type="text" class="form-control" ng-model="register.giftAmount" placeholder="CHF">
+                                </div>
+                                <div class="form-group">
 
-                            </div><!-- /.col-lg-6 -->
-
-                            <button type="submit" ng-click="doPartipate()" class="btn btn-default">Submit</button>
+                                    <button ng-click="doPartipate()" type="button" class="btn btn-default btn-lg">
+                                         Anmelden
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -69,10 +99,15 @@
                             </div>
                             Mit dem kannst du dich hier wieder anmelden und Daten ändern.
                         </div>
-                        <div ng-hide="token">
-                            <input type="text" class="form-control" ng-model="login.token" placeholder="Token">
-                            <button type="submit" ng-click="doLoadPartipate()" class="btn btn-default">Load</button>
 
+                        <div ng-hide="token">
+                            <div class="form-group">
+                                <label for="token">Dein Code</label>
+                                <input id="token" type="text" class="form-control" ng-model="login.token" placeholder="Token">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" ng-click="doLoadPartipate()" class="btn btn-default">Laden</button>
+                            </div>
                         </div>
                     </div>
 

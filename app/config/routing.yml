@@ -12,3 +12,9 @@ api_participants:
     resource: '\Tspycher\Bundle\ThirtiethBirthdayBundle\ApiController\ParticipantsController'
     type:     rest
     prefix:   /api/
+
+static_gift1:
+    path: /static/gift1
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    'TspycherThirtiethBirthdayBundle:Static:gift1.html.twig'

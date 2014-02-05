@@ -6,6 +6,15 @@ function ParticipantController($scope, $http) {
             $scope.gifts = data.gift;
         });
 
+    $scope.loadDetails = function (url) {
+        $http.get(url).
+            success(function(data) {
+                $scope.giftDetails = data;
+            }).error(function(data) {
+                $scope.giftDetails = "Sorry konnte Details nicht laden";
+            });
+    }
+
     $scope.getParicipantCount = function () {
         $http.get('/api/participantcount.json').
             success(function(data) {
@@ -44,9 +53,18 @@ function ParticipantController($scope, $http) {
     }
 
     $scope.loadToken = function (data) {
-        $scope.message = "Super, ich freue mich auf dich ";
+        this.setSuccess("Super, ich freue mich auf dich");
         $scope.getParicipantCount();
         $scope.token = data.code;
+    }
+
+    $scope.setSuccess = function (text) {
+        $scope.message = text;
+        $scope.messageType = "success";
+    }
+    $scope.setDanger = function (text) {
+        $scope.message = text;
+        $scope.messageType = "danger";
     }
 
     $scope.doPartipate = function () {
@@ -56,7 +74,7 @@ function ParticipantController($scope, $http) {
             $scope.loadToken(data);
             $scope.register = {}
         }).error(function(data) {
-                $scope.message = "Sorry, ich konnte dich nicht registrieren";
+                this.setDanger("Sorry, ich konnte dich nicht registrieren");
             });
 
     }
