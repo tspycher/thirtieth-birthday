@@ -30,8 +30,13 @@ class PeopleRepository extends EntityRepository
     }
 
     public function donate(Gift $gift, People $people, $amount, $message) {
-        $d = new Donate();
-        $d->setPeople($people);
+        $d = $this->getEntityManager()->getRepository('TspycherThirtiethBirthdayBundle:Donate')
+            ->findOneBy(array('people' => $people->getId()));
+
+        if(is_null($d)) {
+            $d = new Donate();
+            $d->setPeople($people);
+        }
         $d->setGift($gift);
         $d->setAmount($amount);
         $d->setMessage($message);

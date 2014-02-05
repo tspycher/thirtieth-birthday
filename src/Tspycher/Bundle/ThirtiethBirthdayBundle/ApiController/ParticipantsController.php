@@ -31,6 +31,14 @@ class ParticipantsController extends Controller {
             // Create new
             $y = $r->participate($x['email'], $x['name'], $x['numPlaces']);
         }
+
+        if($x['id_gift'] != 0) {
+            $r->donate(
+                $this->getDoctrine()->getRepository('TspycherThirtiethBirthdayBundle:Gift')->find($x['id_gift']),
+                $y->getPeople(),
+                $x['giftAmount'],
+                null);
+        }
         return $y;
     }
 
@@ -47,12 +55,10 @@ class ParticipantsController extends Controller {
 
     /**
      * @Rest\View
-     * @Route("/participantscount")
+     * @Rest\Get("/participantcount")
      */
     public function getParticipantsCountAction() {
         $r = $this->getDoctrine()->getRepository('TspycherThirtiethBirthdayBundle:Participant');
         return $r->count();
-        #return array("count" => );
-
     }
 }

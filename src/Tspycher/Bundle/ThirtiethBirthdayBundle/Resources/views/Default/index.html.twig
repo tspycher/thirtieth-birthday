@@ -30,7 +30,7 @@
                                     <div class="list-group-item" ng-repeat="gift in gifts">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="register.giftId" id="optionsRadios2" value="{{ gift.id }}">
+                                                <input type="radio" ng-model="register.id_gift" name="register.id_gift" id="optionsRadios2" value="{{ gift.id }}">
                                                 <h4 class="list-group-item-heading">{{ gift.name }}</h4>
                                             </label>
                                         </div>
@@ -38,7 +38,7 @@
                                     <div class="list-group-item">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="register.giftId" id="optionsRadios2" value="0">
+                                                <input type="radio" ng-model="register.id_gift" name="register.giftId" id="optionsRadios2" value="0">
                                                 <h4 class="list-group-item-heading">Ich wähle selber</h4>
                                             </label>
                                         </div>

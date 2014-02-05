@@ -7,7 +7,7 @@ function ParticipantController($scope, $http) {
         });
 
     $scope.getParicipantCount = function () {
-        $http.get('/api/participants/count.json').
+        $http.get('/api/participantcount.json').
             success(function(data) {
                 $scope.seatsCount = data.seats;
                 $scope.participants = data.participants;
@@ -28,8 +28,10 @@ function ParticipantController($scope, $http) {
                     name: data.people.name,
                     numPlaces: data.number_of_seats,
                     email: data.people.email,
+                    giftAmount: data.people.donate.amount,
                     id_participant: data.id,
-                    id_people: data.people.id
+                    id_people: data.people.id,
+                    id_gift: data.people.donate.gift.id
                 };
 
             }).error(function(data) {

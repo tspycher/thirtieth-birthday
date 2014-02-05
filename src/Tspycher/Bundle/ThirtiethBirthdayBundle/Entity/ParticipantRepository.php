@@ -14,7 +14,13 @@ class ParticipantRepository extends EntityRepository
 {
 
     public function getByCode($code) {
-        return $this->findOneBy(array('code'=>$code));
+        $query = $this->createQueryBuilder('p')
+            ->where('p.code = :code')
+            ->setParameter('code', $code)
+            ->getQuery()
+            ->getSingleResult();
+        return $query;
+        #return $this->findOneBy(array('code'=>$code));
     }
 
     public function count() {
