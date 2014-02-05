@@ -19,10 +19,13 @@ function ParticipantController($scope, $http) {
 
     $scope.getParicipantCount();
 
+    /**
+     * Load Prticipiants
+     */
     $scope.doLoadPartipate = function () {
         $http.get('/api/participants/'+$scope.login.token+'.json').
             success(function(data) {
-                $scope.loadToken(data);
+                $scope.getParicipantCount();
                 /**this.register.name = "blubb";**/
                 $scope.register = {
                     name: data.people.name,
@@ -51,6 +54,7 @@ function ParticipantController($scope, $http) {
 
         $http.post('/api/participants.json', $scope.register, {'Content-Type': 'application/json'}).success(function(data) {
             $scope.loadToken(data);
+            $scope.register = {}
         }).error(function(data) {
                 $scope.message = "Sorry, ich konnte dich nicht registrieren";
             });
