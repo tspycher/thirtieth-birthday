@@ -5,6 +5,7 @@ var myApp = angular.module('myApp', ['ngSanitize']);
 function ParticipantController($scope, $http) {
 
     $scope.register = {id_participant: 0, id_people: 0};
+    $scope.edit = false;
 
     $scope.loadGifts = function () {
         $http.get('/api/gifts.json').
@@ -33,6 +34,15 @@ function ParticipantController($scope, $http) {
             });
     }
 
+    $scope.editmode = function(enable) {
+        if (enable) {
+            $scope.editButtonLabel = "Ändern";
+            $scope.edit = true;
+        } else {
+            $scope.editButtonLabel = "Anmelden";
+            $scope.edit = false;
+        }
+    }
 
     /**
      * Load Prticipiants
@@ -40,6 +50,7 @@ function ParticipantController($scope, $http) {
     $scope.doLoadPartipate = function () {
         $http.get('/api/participants/'+$scope.login.token+'.json').
             success(function(data) {
+                $scope.editmode(true);
                 $scope.getParicipantCount();
                 /**this.register.name = "blubb";**/
                 $scope.register = {
@@ -63,7 +74,6 @@ function ParticipantController($scope, $http) {
     }
 
     $scope.loadToken = function (data) {
-        this.setSuccess("Super, ich freue mich auf dich");
         $scope.getParicipantCount();
         $scope.token = data.code;
     }
@@ -84,7 +94,12 @@ function ParticipantController($scope, $http) {
             return;
         }
         $http.post('/api/participants.json', $scope.register, {'Content-Type': 'application/json'}).success(function(data) {
-            $scope.loadToken(data);
+            if(!$scope.edit) {
+                $scope.loadToken(data);
+                $scope.setSuccess("Super, ich freue mich auf dich");
+            } else {
+                $scope.setSuccess("Deine Änderungen sind gespeichert");
+            }
             $scope.register = {}
             $scope.loadGifts();
         }).error(function(data) {
@@ -94,6 +109,6 @@ function ParticipantController($scope, $http) {
     }
     $scope.getParicipantCount();
     $scope.loadGifts();
-
+    $scope.editmode(false);
 
 }
