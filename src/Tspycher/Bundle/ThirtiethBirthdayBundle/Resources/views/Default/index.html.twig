@@ -4,12 +4,12 @@
 
 {% block body %}
     {% verbatim %}
-    <div ng-app ng-controller="ParticipantController">
+    <div ng-app="myApp" ng-controller="ParticipantController">
         <div class="row" >
 
             <h1>Mein 30igster Geburtstag</h1>
 
-            <p class="lead">Aktuell kommen {{ seatsCount }} Leute in total {{ participants }} Anmeldungen.</p>
+            <p class="lead">Aktuell kommen {{ seatsCount }} Leute aus insgesammt {{ participants }} Anmeldungen</p>
 
 
             <div class="col-xs-6">
@@ -17,27 +17,35 @@
 
                     <div class="panel-body">
                         <div class="input-group">
-                            <div class="alert alert-{{ messageType }}" ng-show="{{ messageType }}">{{ message }}</div>
-                            <form>
+                            <div class="alert alert-{{ messageType }}" ng-show="messageType">{{ message }}</div>
+
+                            <form name="participate">
                                 <input type="hidden" class="form-control" placeholder="Name" ng-model="register.id_people">
                                 <input type="hidden" class="form-control" placeholder="Name" ng-model="register.id_participant">
 
                                 <div class="form-group">
                                     <label for="name">Wer bist du?</label>
-                                    <input id="name" type="text" class="form-control" placeholder="Name" ng-model="register.name" name="register.name">
+                                    <input id="name" type="text" class="form-control" name="register_name" placeholder="Name" ng-model="register.name" name="register.name" required="1">
+                                    <span class="error" ng-show="participate.register_name.$error.required">Required!</span>
+                                    <span class="error" ng-show="participate.register_name.$error.number"> Not valid Number!</span>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Wieviele seid Ihr?</label>
-                                    <input type="text" class="form-control" placeholder="Anzahl Personen" ng-model="register.numPlaces">
+                                    <input type="number" class="form-control" name="register_number" placeholder="Anzahl Personen" ng-model="register.numPlaces" min="0" max="10" required="1">
+                                    <span class="error" ng-show="participate.register_number.$error.required"> Required!</span>
                                 </div>
-
-                            <input type="text" class="form-control" placeholder="Email" ng-model="register.email">
-
+                                <div class="form-group">
+                                    <label for="email">Wie ist deine Email Adresse?</label>
+                                    <input id="email" type="email" class="form-control" name="register_email" placeholder="Email" ng-model="register.email" required="1">
+                                    <span class="error" ng-show="participate.register_email.$error.required"> Required!</span>
+                                    <span class="error" ng-show="participate.register_email.$error.email"> Not valid email!</span>
+                                </div>
                                 <div ng-repeat="gift in gifts">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="radio">
-                                                <input type="radio" ng-model="register.id_gift" name="register.id_gift" id="optionsRadios2" value="{{ gift.id }}">
+                                                <input ng-value="gift.id" ng-checked="!register.id_gift or register.id_gift == gift.id" type="radio" ng-model="register.id_gift" name="register.id_gift" id="optionsRadios2" value="{{ gift.id }}">
 
                                                 <div class="media">
                                                     <a class="pull-left" href="#">
@@ -45,17 +53,16 @@
                                                     </a>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">{{ gift.name }}</h4>
-                                                        <button class="btn btn-primary" data-toggle="modal" data-target=".bs-modal-lg" ng-click="loadDetails(gift.url)">mehr...</button>
+                                                        <div class="progress progress-striped active">
+                                                            <div class="progress-bar"  role="progressbar" aria-valuenow="{{ gift.open_percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ gift.open_percent }}%">
+                                                                <span class="sr-only">{{ gift.donated }} CHF</span>
+                                                            </div>
+                                                        </div>
+                                                        <small>Es wurden bereits {{ gift.donated }} CHF von {{ gift.price }} CHF verschenkt</small>
+
+                                                        <button class="btn btn-primary" data-toggle="modal" data-target=".bs-modal-lg" ng-click="loadDetails(gift.url)">mehr</button>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                {{ giftDetails }}
                                             </div>
                                         </div>
                                     </div>
@@ -74,11 +81,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="giftAmount">Beteiligung</label>
-                                    <input id="giftAmount" type="text" class="form-control" ng-model="register.giftAmount" placeholder="CHF">
+                                    <input id="giftAmount" type="number" name="register_amount" class="form-control" ng-model="register.giftAmount" placeholder="CHF" ng-required="register.id_gift != 0" ng-disabled="register.id_gift == 0">
+                                    <span class="error" ng-show="participate.register_amount.$error.required"> Required!</span>
+
                                 </div>
                                 <div class="form-group">
 
-                                    <button ng-click="doPartipate()" type="button" class="btn btn-default btn-lg">
+                                    <button ng-click="doPartipate()" type="button" class="btn btn-lg btn-success">
                                          Anmelden
                                     </button>
                                 </div>
@@ -90,23 +99,31 @@
             <div class="col-xs-6">
 
                 <div class="panel panel-default">
-                    <div>
+
+                    <div class="panel-body">
 
                         <div ng-show="token">
-                            Cooool, danke für die Anmeldung. Merke dir bitte diesen Code
-                            <div>
-                                {{ token }}
+                            <div class="jumbotron">
+                                <h2>Cooool, danke für die Anmeldung!</h2>
+                                <p>Merke dir bitte diesen Code
+                                <h1><span class="label label-default">{{ token }}</span></h1>
+                                Mit dem kannst du dich hier wieder anmelden und Daten ändern.</p>
                             </div>
-                            Mit dem kannst du dich hier wieder anmelden und Daten ändern.
+
                         </div>
 
-                        <div ng-hide="token">
-                            <div class="form-group">
-                                <label for="token">Dein Code</label>
-                                <input id="token" type="text" class="form-control" ng-model="login.token" placeholder="Token">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" ng-click="doLoadPartipate()" class="btn btn-default">Laden</button>
+                        <div class="input-group">
+
+                            <div ng-hide="token">
+                                <p>Wenn du dich hier bereits angemeldet hast, hast du einen vier- bis fünfstelligen
+                                    Code erhalten. Gib den hier ein um deine Anmeldung anzupassen.</p>
+                                <div class="form-group">
+                                    <label for="token">Dein Code</label>
+                                    <input id="token" type="text" class="form-control" ng-model="login.token" placeholder="Token">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" ng-click="doLoadPartipate()" class="btn btn-default btn-lg">Laden</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -117,9 +134,19 @@
         </div>
 
 
-
+        <div class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <h2>Details</h2>
+                    <div ng-bind-html="giftDetails"></div>
+                </div>
+            </div>
+        </div>
 
     </div>
+
+
+
     {% endverbatim %}
 
 {% endblock %}

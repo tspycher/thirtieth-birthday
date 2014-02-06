@@ -38,6 +38,9 @@ class ParticipantsController extends Controller {
                 $y->getPeople(),
                 $x['giftAmount'],
                 null);
+        } else {
+            // remove existing donations if set
+            $r->removeDonation($y->getPeople());
         }
         return $y;
     }

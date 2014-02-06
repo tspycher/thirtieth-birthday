@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 
 
@@ -153,6 +154,7 @@ class Gift
      * Returns difference between donated and price of gift
      *
      * @return mixed
+     * @VirtualProperty()
      */
     public function getOpen() {
         $x = $this->price;
@@ -163,9 +165,19 @@ class Gift
     }
 
     /**
+     * Returns difference between donated and price of gift
+     *
+     * @return mixed
+     * @VirtualProperty()
+     */
+    public function getOpenPercent() {
+        return round(100 / $this->price * $this->getDonated(),0);
+    }
+    /**
      * Returns amount of donated value
      *
      * @return int
+     * @VirtualProperty()
      */
     public function getDonated() {
         $x = 0;

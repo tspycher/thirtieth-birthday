@@ -1,10 +1,17 @@
+var myApp = angular.module('myApp', ['ngSanitize']);
+
+
+
 function ParticipantController($scope, $http) {
+
     $scope.register = {id_participant: 0, id_people: 0};
 
-    $http.get('/api/gifts.json').
-        success(function(data) {
-            $scope.gifts = data.gift;
-        });
+    $scope.loadGifts = function () {
+        $http.get('/api/gifts.json').
+            success(function(data) {
+                $scope.gifts = data.gift;
+            });
+    }
 
     $scope.loadDetails = function (url) {
         $http.get(url).
@@ -26,7 +33,6 @@ function ParticipantController($scope, $http) {
             });
     }
 
-    $scope.getParicipantCount();
 
     /**
      * Load Prticipiants
@@ -40,12 +46,16 @@ function ParticipantController($scope, $http) {
                     name: data.people.name,
                     numPlaces: data.number_of_seats,
                     email: data.people.email,
-                    giftAmount: data.people.donate.amount,
                     id_participant: data.id,
-                    id_people: data.people.id,
-                    id_gift: data.people.donate.gift.id
-                };
+                    id_people: data.people.id
 
+                };
+                if(data.people.donate) {
+                    $scope.register.id_gift = data.people.donate.gift.id;
+                    $scope.register.giftAmount = data.people.donate.amount;
+                } else {
+                    $scope.register.id_gift = 0;
+                }
             }).error(function(data) {
                 $scope.seatsCount = 0;
                 $scope.participants = 0;
@@ -69,15 +79,21 @@ function ParticipantController($scope, $http) {
 
     $scope.doPartipate = function () {
         /**$scope.message = "Vielen Dank für die Teilname"+$scope.name ; */
-
+        if(!$scope.participate.$valid) {
+            $scope.setDanger("Bitte überprüfe die Felder in der Anmeldung");
+            return;
+        }
         $http.post('/api/participants.json', $scope.register, {'Content-Type': 'application/json'}).success(function(data) {
             $scope.loadToken(data);
             $scope.register = {}
+            $scope.loadGifts();
         }).error(function(data) {
-                this.setDanger("Sorry, ich konnte dich nicht registrieren");
+                $scope.setDanger("Sorry, ich konnte dich nicht registrieren");
             });
 
     }
+    $scope.getParicipantCount();
+    $scope.loadGifts();
 
 
 }

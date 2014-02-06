@@ -29,6 +29,12 @@ class PeopleRepository extends EntityRepository
         return call_user_func_array(array($this, $method), $args);
     }
 
+    public function removeDonation(People $people) {
+        if(is_null($people->getDonate())) return;
+        $this->getEntityManager()->remove($people->getDonate());
+        $this->getEntityManager()->flush();
+    }
+
     public function donate(Gift $gift, People $people, $amount, $message) {
         $d = $this->getEntityManager()->getRepository('TspycherThirtiethBirthdayBundle:Donate')
             ->findOneBy(array('people' => $people->getId()));
