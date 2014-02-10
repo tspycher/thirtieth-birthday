@@ -30,6 +30,7 @@ class ParticipantsController extends Controller {
         } else {
             // Create new
             $y = $r->participate($x['email'], $x['name'], $x['numPlaces']);
+            $this->sendMail($x['name'], $x['email'], $y->getCode());
         }
 
         if($x['id_gift'] != 0) {
@@ -43,6 +44,24 @@ class ParticipantsController extends Controller {
             $r->removeDonation($y->getPeople());
         }
         return $y;
+    }
+
+    private function sendMail($name, $to, $code) {
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('me@tspycher.com')
+            ->setTo($to)
+            ->setBody(
+                $this->renderView(
+                    'TspycherThirtiethBirthdayBundle:Emails:paricipant.txt.twig',
+                    array(
+                        'name' => $name,
+                        'code' => $code
+                    )
+                )
+            )
+        ;
+        $this->get('mailer')->send($message);
     }
 
     /**

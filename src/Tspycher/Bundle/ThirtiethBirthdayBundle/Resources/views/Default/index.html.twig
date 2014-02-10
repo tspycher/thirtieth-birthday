@@ -26,20 +26,19 @@
                                 <div class="form-group">
                                     <label for="name">Wer bist du?</label>
                                     <input id="name" type="text" class="form-control" name="register_name" placeholder="Name" ng-model="register.name" name="register.name" required="1">
-                                    <span class="error" ng-show="participate.register_name.$error.required">Required!</span>
-                                    <span class="error" ng-show="participate.register_name.$error.number"> Not valid Number!</span>
+                                    <span class="error" ng-show="participate.register_name.$error.required">Zwingend!</span>
 
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Wieviele seid Ihr?</label>
                                     <input type="number" class="form-control" name="register_number" placeholder="Anzahl Personen" ng-model="register.numPlaces" min="0" max="10" required="1">
-                                    <span class="error" ng-show="participate.register_number.$error.required"> Required!</span>
+                                    <span class="error" ng-show="participate.register_number.$error.required">Zwingend!</span>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Wie ist deine Email Adresse?</label>
                                     <input id="email" type="email" class="form-control" name="register_email" placeholder="Email" ng-model="register.email" required="1">
-                                    <span class="error" ng-show="participate.register_email.$error.required"> Required!</span>
-                                    <span class="error" ng-show="participate.register_email.$error.email"> Not valid email!</span>
+                                    <span class="error" ng-show="participate.register_email.$error.required">Zwingend!</span>
+                                    <span class="error" ng-show="participate.register_email.$error.email">Keine gültige Email Adresse!</span>
                                 </div>
                                 <div ng-repeat="gift in gifts">
                                     <div class="panel panel-default">
@@ -53,13 +52,15 @@
                                                     </a>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">{{ gift.name }}</h4>
+
                                                         <div class="progress progress-striped active">
                                                             <div class="progress-bar"  role="progressbar" aria-valuenow="{{ gift.open_percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ gift.open_percent }}%">
                                                                 <span class="sr-only">{{ gift.donated }} CHF</span>
                                                             </div>
                                                         </div>
-                                                        <small>Es wurden bereits {{ gift.donated }} CHF von {{ gift.price }} CHF verschenkt</small>
-
+                                                        <p>
+                                                            <small>Es wurden bereits {{ gift.donated }} CHF von {{ gift.price }} CHF verschenkt</small>
+                                                        </p>
                                                         <button class="btn btn-primary" data-toggle="modal" data-target=".bs-modal-lg" ng-click="loadDetails(gift.url)">mehr</button>
                                                     </div>
                                                 </div>
@@ -82,7 +83,7 @@
                                 <div class="form-group">
                                     <label for="giftAmount">Beteiligung</label>
                                     <input id="giftAmount" type="number" name="register_amount" class="form-control" ng-model="register.giftAmount" placeholder="CHF" ng-required="register.id_gift != 0" ng-disabled="register.id_gift == 0">
-                                    <span class="error" ng-show="participate.register_amount.$error.required"> Required!</span>
+                                    <span class="error" ng-show="participate.register_amount.$error.required"> Zwingend!</span>
 
                                 </div>
                                 <div class="form-group">
@@ -137,8 +138,14 @@
         <div class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <h2>Details</h2>
-                    <div ng-bind-html="giftDetails"></div>
+                    <div class="row">
+
+                        <div class="col-md-10 col-md-offset-1">
+                            <h2>Details</h2>
+                            <hr>
+                            <div ng-bind-html="giftDetails"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
