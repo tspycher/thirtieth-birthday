@@ -5,198 +5,258 @@
 {% block body %}
     {% verbatim %}
     <div ng-app="myApp" ng-controller="ParticipantController">
-        <div class="row">
+    <div class="row">
 
-            <h1>Mein 30igster Geburtstag</h1>
+    <h1>Mein 30igster Geburtstag</h1>
 
-            <p class="lead">Aktuell kommen {{ seatsCount }} Leute aus insgesammt {{ participants }} Anmeldungen</p>
+    <p class="lead">Aktuell kommen {{ seatsCount }} Leute aus insgesammt {{ participants }} Anmeldungen</p>
 
 
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                Informationen
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-                            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-                            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
-                            probably haven't heard of them accusamus labore sustainable VHS.
+    <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    Informationen
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <p>
+                    Sehr gerne möchte ich Dich/Euch zu meinem Geburtstag einladen. Ich glaube es selbst kaum, dass ich
+                    dreissig Jahre alt werde!
+                    Dieses Ereignis möchte ich mit euch feiern. Aus diesem Grund habe ich die Walthütte in
+                    Lausen reserviert.
+                </p>
+                <div class="row">
+                    <div class="col-md-3"><strong>Wo?</strong></div>
+                    <div class="col-md-7">Waldhütte Lausen "Edleten" <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#googleMap">Karte</button> </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"><strong>Wann?</strong></div>
+                    <div class="col-md-7">Samstag 31.05 15:00 Uhr</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"><strong>Wo stelle ich mein Auto hin?</strong></div>
+                    <div class="col-md-7">Parkplätze hat es genug, auch wenn man vielleicht etwas kreativ sein muss</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"><strong>Hunger!?!?</strong></div>
+                    <div class="col-md-7">Fleisch und Würste hat es reichlich. Salate, Kuchen, Getränke, Wein und Bier hat's auch. Wer sich kulinarisch
+                    beteiligen möchte darf dies natürlich sehr gerne. Schreibt einfach <a href="mailto:me@ntschopp.ch">Nadine</a> eine Mail.</div>
+                </div>
+                <p>
+                    Damit Ihr euch nicht den Kopf zerbrechen müsst, was ihr mitbringen könntet mache ich es euch einfach. Wenn Ihr euch hier
+                    für das Fest anmeldet, könnt Ihr euch auch gleich an einem grösseren Geschenk beteiligen. Die, die sich daran beteiligen, erhalten
+                    ein "Zertifikat" welches sie ausdrucken können, an eine Packung Kaugumme kleben und mir überreichen können wenn ihr wollt. Die
+                    Beteiligungen verwaltet Nadine für mich.
+                </p>
 
-                            <!-- Responsive iFrame -->
-                            <div class="Flexible-container">
-                                <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=Bern&amp;aq=&amp;sll=46.813187,8.22421&amp;sspn=3.379772,8.453979&amp;ie=UTF8&amp;hq=&amp;hnear=Waldhütte&amp;t=m&amp;z=12&amp;ll=46.947922,7.444608&amp;output=embed&amp;iwloc=near"></iframe>
+                <!-- Modal -->
+                <div class="modal fade" id="googleMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">Karte</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Responsive iFrame -->
+                                <div class="Flexible-container">
+                                    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                            src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=Bern&amp;aq=&amp;sll=46.813187,8.22421&amp;sspn=3.379772,8.453979&amp;ie=UTF8&amp;hq=&amp;hnear=Waldhütte&amp;t=m&amp;z=12&amp;ll=46.947922,7.444608&amp;output=embed&amp;iwloc=near"></iframe>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                Anmeldunge
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
+
+
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    Anmeldung
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+
+
+                <div class="col-xs-6">
+                    <div class="panel panel-default">
+
                         <div class="panel-body">
+                            <div class="input-group">
+                                <div class="alert alert-{{ messageType }}"
+                                     ng-show="messageType">{{ message }}</div>
+                                <form name="participate">
+                                    <input type="hidden" class="form-control" placeholder="Name"
+                                           ng-model="register.id_people">
+                                    <input type="hidden" class="form-control" placeholder="Name"
+                                           ng-model="register.id_participant">
 
-
-                            <div class="col-xs-6">
-                                <div class="panel panel-default">
-
-                                    <div class="panel-body">
-                                        <div class="input-group">
-                                            <div class="alert alert-{{ messageType }}"
-                                                 ng-show="messageType">{{ message }}</div>
-                                            <form name="participate">
-                                                <input type="hidden" class="form-control" placeholder="Name"
-                                                       ng-model="register.id_people">
-                                                <input type="hidden" class="form-control" placeholder="Name"
-                                                       ng-model="register.id_participant">
-
-                                                <div class="form-group">
-                                                    <label for="name">Wer bist du?</label>
-                                                    <input id="name" type="text" class="form-control"
-                                                           name="register_name" placeholder="Name"
-                                                           ng-model="register.name" name="register.name" required="1">
+                                    <div class="form-group">
+                                        <label for="name">Wer bist du?</label>
+                                        <input id="name" type="text" class="form-control"
+                                               name="register_name" placeholder="Name"
+                                               ng-model="register.name" name="register.name" required="1">
                                                     <span class="error"
                                                           ng-show="participate.register_name.$error.required">Zwingend!</span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="name">Wieviele seid Ihr?</label>
-                                                    <input type="number" class="form-control" name="register_number"
-                                                           placeholder="Anzahl Personen" ng-model="register.numPlaces"
-                                                           min="0" max="10" required="1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Wieviele seid Ihr?</label>
+                                        <input type="number" class="form-control" name="register_number"
+                                               placeholder="Anzahl Personen" ng-model="register.numPlaces"
+                                               min="0" max="10" required="1">
                                                     <span class="error"
                                                           ng-show="participate.register_number.$error.required">Zwingend!</span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">Wie ist deine Email Adresse?</label>
-                                                    <input id="email" type="email" class="form-control"
-                                                           name="register_email" placeholder="Email"
-                                                           ng-model="register.email" required="1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Wie ist deine Email Adresse?</label>
+                                        <input id="email" type="email" class="form-control"
+                                               name="register_email" placeholder="Email"
+                                               ng-model="register.email" required="1">
                                                     <span class="error"
                                                           ng-show="participate.register_email.$error.required">Zwingend!</span>
                                                     <span class="error"
                                                           ng-show="participate.register_email.$error.email">Keine gültige Email Adresse!</span>
-                                                </div>
-                                                <div ng-repeat="gift in gifts">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-body">
-                                                            <div class="radio">
-                                                                <input ng-value="gift.id"
-                                                                       ng-checked="!register.id_gift or register.id_gift == gift.id"
-                                                                       type="radio" ng-model="register.id_gift"
-                                                                       name="register.id_gift" id="optionsRadios2"
-                                                                       value="{{ gift.id }}">
-                                                                <div class="media">
-                                                                    <a class="pull-left" href="#">
-                                                                        <img src="{{ gift.picture_url }}"
-                                                                             alt="{{ gift.name }} Picture"
-                                                                             class="img-circle media-object img-gift">
-                                                                    </a>
-                                                                    <div class="media-body">
-                                                                        <h4 class="media-heading">{{ gift.name }}</h4>
-                                                                        <div class="progress progress-striped active">
-                                                                            <div class="progress-bar" role="progressbar"
-                                                                                 aria-valuenow="{{ gift.open_percent }}"
-                                                                                 aria-valuemin="0" aria-valuemax="100"
-                                                                                 style="width: {{ gift.open_percent }}%">
+                                    </div>
+                                    <div ng-repeat="gift in gifts">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <div class="radio">
+                                                    <input ng-value="gift.id"
+                                                           ng-checked="!register.id_gift or register.id_gift == gift.id"
+                                                           type="radio" ng-model="register.id_gift"
+                                                           name="register.id_gift" id="optionsRadios2"
+                                                           value="{{ gift.id }}">
+
+                                                    <div class="media">
+                                                        <a class="pull-left" href="#">
+                                                            <img src="{{ gift.picture_url }}"
+                                                                 alt="{{ gift.name }} Picture"
+                                                                 class="img-circle media-object img-gift">
+                                                        </a>
+
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading">{{ gift.name }}</h4>
+
+                                                            <div class="progress progress-striped active">
+                                                                <div class="progress-bar" role="progressbar"
+                                                                     aria-valuenow="{{ gift.open_percent }}"
+                                                                     aria-valuemin="0" aria-valuemax="100"
+                                                                     style="width: {{ gift.open_percent }}%">
                                                                                 <span class="sr-only">{{ gift.donated }}
                                                                                     CHF</span>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p>
-                                                                            <small>Es wurden bereits {{ gift.donated }}
-                                                                                CHF von {{ gift.price }} CHF verschenkt
-                                                                            </small>
-                                                                        </p>
-                                                                        <button class="btn btn-primary"
-                                                                                data-toggle="modal"
-                                                                                data-target=".bs-modal-lg"
-                                                                                ng-click="loadDetails(gift.url)">mehr
-                                                                        </button>
-                                                                    </div>
                                                                 </div>
                                                             </div>
+                                                            <p>
+                                                                <small>Es wurden bereits {{ gift.donated }}
+                                                                    CHF von {{ gift.price }} CHF verschenkt
+                                                                </small>
+                                                            </p>
+                                                            <button class="btn btn-primary"
+                                                                    data-toggle="modal"
+                                                                    data-target=".bs-modal-lg"
+                                                                    ng-click="loadDetails(gift.url)">mehr
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="panel panel-default">
-                                                    <div class="panel-body">
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input type="radio" ng-model="register.id_gift"
-                                                                       name="register.giftId" id="optionsRadios2"
-                                                                       value="0">
-                                                                <h4>Ich wähle selber</h4>
-                                                            </label>
-                                                        </div>
-                                                        <p class="list-group-item-text">Das geht natürlich auch :)</p>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="giftAmount">Beteiligung</label>
-                                                    <input id="giftAmount" type="number" name="register_amount"
-                                                           class="form-control" ng-model="register.giftAmount"
-                                                           placeholder="CHF" ng-required="register.id_gift != 0"
-                                                           ng-disabled="register.id_gift == 0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" ng-model="register.id_gift"
+                                                           name="register.giftId" id="optionsRadios2"
+                                                           value="0">
+                                                    <h4>Ich wähle selber</h4>
+                                                </label>
+                                            </div>
+                                            <p class="list-group-item-text">Das geht natürlich auch :)</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="giftAmount">Beteiligung</label>
+                                        <input id="giftAmount" type="number" name="register_amount"
+                                               class="form-control" ng-model="register.giftAmount"
+                                               placeholder="CHF" ng-required="register.id_gift != 0"
+                                               ng-disabled="register.id_gift == 0">
                                                     <span class="error"
                                                           ng-show="participate.register_amount.$error.required"> Zwingend!</span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <button ng-click="doPartipate()" type="button"
-                                                            class="btn btn-lg btn-success">
-                                                        {{ editButtonLabel }}
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
                                     </div>
+                                    <div class="form-group">
+                                        <button ng-click="doPartipate()" type="button"
+                                                class="btn btn-lg btn-success">
+                                            {{ editButtonLabel }}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div ng-show="token">
+                                <div class="jumbotron">
+                                    <h2>Cooool, danke für die Anmeldung!</h2>
+
+                                    <p>Merke dir bitte diesen Code
+
+                                    <h1><span class="label label-default">{{ token }}</span></h1>
+                                    Mit dem kannst du dich hier wieder anmelden und Daten ändern.</p>
                                 </div>
                             </div>
-                            <div class="col-xs-6">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <div ng-show="token">
-                                            <div class="jumbotron">
-                                                <h2>Cooool, danke für die Anmeldung!</h2>
 
-                                                <p>Merke dir bitte diesen Code
+                            <div class="input-group">
+                                <div ng-hide="token">
+                                    <p>Wenn du dich hier bereits angemeldet hast, hast du einen vier- bis
+                                        fünfstelligen
+                                        Code erhalten. Gib den hier ein um deine Anmeldung anzupassen.</p>
 
-                                                <h1><span class="label label-default">{{ token }}</span></h1>
-                                                Mit dem kannst du dich hier wieder anmelden und Daten ändern.</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="input-group">
-                                            <div ng-hide="token">
-                                                <p>Wenn du dich hier bereits angemeldet hast, hast du einen vier- bis
-                                                    fünfstelligen
-                                                    Code erhalten. Gib den hier ein um deine Anmeldung anzupassen.</p>
-
-                                                <div class="form-group">
-                                                    <label for="token">Dein Code</label>
-                                                    <input id="token" type="text" class="form-control"
-                                                           ng-model="login.token" placeholder="Token">
-                                                </div>
-                                                <div class="form-group">
-                                                    <button type="submit" ng-click="doLoadPartipate()"
-                                                            class="btn btn-default btn-lg">Laden
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="token">Dein Code</label>
+                                        <input id="token" type="text" class="form-control"
+                                               ng-model="login.token" placeholder="Token">
                                     </div>
+                                    <div class="form-group">
+                                        <button type="submit" ng-click="doLoadPartipate()"
+                                                class="btn btn-default btn-lg">Laden
+                                        </button>
+                                    </div>
+                                </div>
+                                <div ng-show="accountInfo">
+                                    <div class="alert alert-info">
+                                        <p>
+                                            Um es für Dich/Euch so einfach wie möglich zu machen, kannst du den Betrag
+                                            auf
+                                            das folgende Konto überweisen, welches von Nadine verwaltet wird:
+                                        </p>
+
+                                        <p><strong>IBAN CH12 1234 1234 1234 5<br/>
+                                                Nadine Tschopp / 4466 Ormalingen</strong>
+                                        </p>
+
+                                        <p>
+                                            Falls du einen anderen Weg bevorzugs melde dich doch bei <a
+                                                    href="mailto:me@ntschopp.ch">Nadine</a>
+                                        </p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -204,22 +264,25 @@
                 </div>
             </div>
         </div>
+    </div>
+    </div>
+    </div>
 
-        <div class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="row">
+    <div class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="row">
 
-                        <div class="col-md-10 col-md-offset-1">
-                            <h2>Details</h2>
-                            <hr>
-                            <div ng-bind-html="giftDetails"></div>
-                        </div>
+                    <div class="col-md-10 col-md-offset-1">
+                        <h2>Details</h2>
+                        <hr>
+                        <div ng-bind-html="giftDetails"></div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     {% endverbatim %}

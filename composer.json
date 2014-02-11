@@ -22,7 +22,9 @@
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "1.1.*",
         "jms/serializer-bundle": "@dev",
-        "nelmio/api-doc-bundle": "@dev"
+        "nelmio/api-doc-bundle": "@dev",
+        "orkestra/pdf-bundle": "1.0.x-dev",
+        "whiteoctober/tcpdf-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

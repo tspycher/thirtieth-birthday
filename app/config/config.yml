@@ -2,6 +2,11 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
+services:
+  pdfGenerator:
+    class: Tspycher\Bundle\ThirtiethBirthdayBundle\PdfGenerator\PdfGenerator
+    arguments: [ @orkestra.pdf.factory_registry, @templating ]
+
 framework:
     #esi:             ~
     #translator:      { fallback: %locale% }
@@ -73,3 +78,23 @@ sensio_framework_extra:
 fos_rest:
     view:
         view_response_listener: true
+
+# config.yml
+orkestra_pdf:
+
+  # Main cache directory
+  cache_dir:  %kernel.cache_dir%/orkestra_pdf
+
+  tcpdf:
+    # Path to the tcpdf installation
+    root_dir:   %kernel.root_dir%/../vendor/tecnick.com/tcpdf
+
+    # Path to tcpdf fonts
+    fonts_dir:  %kernel.root_dir%/../vendor/tecnick.com/tcpdf/fonts
+
+    # Path to tcpdf images
+    image_dir:  %kernel.root_dir%/../vendor/tecnick.com/tcpdf/images
+
+  wkhtmltopdf:
+    # Path to the wkhtmltopdf binary
+    binary_path:  wkhtmltopdf

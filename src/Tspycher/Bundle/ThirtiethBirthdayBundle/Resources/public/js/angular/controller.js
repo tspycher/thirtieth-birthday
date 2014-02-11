@@ -6,6 +6,7 @@ function ParticipantController($scope, $http) {
 
     $scope.register = {id_participant: 0, id_people: 0};
     $scope.edit = false;
+    $scope.accountInfo = null;
 
     $scope.loadGifts = function () {
         $http.get('/api/gifts.json').
@@ -61,6 +62,7 @@ function ParticipantController($scope, $http) {
                     id_people: data.people.id
 
                 };
+                $scope.accountInfo = true;
                 if(data.people.donate) {
                     $scope.register.id_gift = data.people.donate.gift.id;
                     $scope.register.giftAmount = data.people.donate.amount;
@@ -76,6 +78,7 @@ function ParticipantController($scope, $http) {
     $scope.loadToken = function (data) {
         $scope.getParicipantCount();
         $scope.token = data.code;
+        $scope.accountInfo = true;
     }
 
     $scope.setSuccess = function (text) {
@@ -102,6 +105,7 @@ function ParticipantController($scope, $http) {
             }
             $scope.register = {}
             $scope.loadGifts();
+            $scope.accountInfo = true;
         }).error(function(data) {
                 $scope.setDanger("Sorry, ich konnte dich nicht registrieren");
             });
