@@ -111,6 +111,10 @@ function ParticipantController($scope, $http) {
             });
 
     }
+
+    $scope.gotoCertificate = function () {
+        window.location = '/certificate/'+$scope.login.token;
+    }
     $scope.getParicipantCount();
     $scope.loadGifts();
     $scope.editmode(false);
