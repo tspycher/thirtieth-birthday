@@ -113,7 +113,7 @@ function ParticipantController($scope, $http) {
     }
 
     $scope.gotoCertificate = function () {
-        window.location = '/certificate/'+$scope.login.token;
+        window.location = '/certificate/'+$scope.token;
     }
     $scope.getParicipantCount();
     $scope.loadGifts();

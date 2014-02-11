@@ -33,7 +33,7 @@ class PdfGenerator extends AbstractPdfGenerator
 
         // Add content
         //courierB
-        $builder->SetFont('courier', '', 20);
+        $builder->SetFont('courier', '', 16);
         $builder->writeHTMLCell(215, 100, 0, 125, $this->render('TspycherThirtiethBirthdayBundle:Pdf:certificate.html.twig', $parameters), 0, 0, 0, true);
 
         #$builder->writeHTML($this->render('TspycherThirtiethBirthdayBundle:Pdf:certificate.html.twig', $parameters), true, false, true, false, '');
