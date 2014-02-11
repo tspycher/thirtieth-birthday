@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
@@ -27,12 +28,12 @@ class DefaultController extends Controller
 
         $generator = $this->get('pdfGenerator');
 
-        $pdf = $generator->generate();
-
-        // Write the PDF to a file
-        #file_put_contents('/some/path/to.pdf', $pdf->getContents());
-
-        // Output the PDF to the browser
+        $r = $this->getDoctrine()->getRepository('TspycherThirtiethBirthdayBundle:Participant');
+        $x = $r->getByCode($code);
+        if(is_null($x)) {
+            throw new NotFoundHttpException('Sorry not existing!');
+        }
+        $pdf = $generator->generate(array("participant" => $x));
         return new Response($pdf->getContents(), 200, array('Content-type' => 'application/pdf'));
     }
 }

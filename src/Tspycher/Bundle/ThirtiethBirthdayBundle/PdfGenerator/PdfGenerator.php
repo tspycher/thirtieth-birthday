@@ -17,46 +17,33 @@ class PdfGenerator extends AbstractPdfGenerator
      */
     protected function doGenerate(array $parameters = array(), array $options = array())
     {
-        // Use the createPdf method to create the desired type of PDF
         $pdf = $this->createPdf('tcpdf', $options);
 
-        /** @var \TCPDF $builder */
         $builder = $pdf->getNativeObject();
 
         $builder->addPage();
+        $bMargin = $builder->getBreakMargin();
+        $auto_page_break = $builder->getAutoPageBreak();
+        $builder->SetAutoPageBreak(false, 0);
+        $img_file = __DIR__ .'/../Resources/public/img/certificate.jpg';
+        $builder->Image($img_file, 0, 0, 215, 280, '', '', '', false, 300, '', false, false, 0);
 
-        $builder->writeHtmlCell(0, 0, 0, 20, $this->render('TspycherThirtiethBirthdayBundle:Pdf:certificate.html.twig', $parameters));
-        #$builder->writeHtmlCell(0, 0, 20, 43, $this->render('MyBundle:Pdf/Invoice:invoiceIntro.html.twig', $parameters));
-        #$builder->writeHtmlCell(0, 0, 20, 66, $this->render('MyBundle:Pdf/Invoice:invoiceBody.html.twig', $parameters));
-        #$builder->writeHtmlCell(0, 0, 20, 165, $this->render('MyBundle:Pdf/Invoice:invoiceFooter.html.twig', $parameters));
+        $builder->SetAutoPageBreak($auto_page_break, $bMargin);
+        $builder->setPageMark();
 
-        $builder->line(0, 190.5, 215.9, 190.5, array('dash' => 3));
+        // Add content
+        //courierB
+        $builder->SetFont('courier', '', 20);
+        $builder->writeHTMLCell(215, 100, 0, 125, $this->render('TspycherThirtiethBirthdayBundle:Pdf:certificate.html.twig', $parameters), 0, 0, 0, true);
 
-        #$builder->writeHtmlCell(0, 0, 21, 200, $this->render('MyBundle:Pdf/Invoice/Detachment:detachmentCompany.html.twig', $parameters));
-        #$builder->writeHtmlCell(0, 0, 0, 200, $this->render('MyBundle:Pdf/Invoice/Detachment:detachmentHead.html.twig', $parameters));
-        #$builder->writeHtmlCell(0, 0, 19.5, 230, $this->render('MyBundle:Pdf/Invoice/Detachment:detachmentInfo.html.twig', $parameters));
-        #$builder->writeHtmlCell(0, 0, 22, 210, $this->render('MyBundle:Pdf/Invoice/Detachment:detachmentDetails.html.twig', $parameters));
+        #$builder->writeHTML($this->render('TspycherThirtiethBirthdayBundle:Pdf:certificate.html.twig', $parameters), true, false, true, false, '');
+        $builder->setPrintHeader(false);
 
-
-        // Call any native methods on the underlying library object
-        #builder = $pdf->getNativeObject();
-        #$builder->useTemporaryFile();
-        #$builder->setInput($this->render('TspycherThirtiethBirthdayBundle:Pdf/certificate.html.twig', $parameters));
-
-        // Return the original PDF, calling getContents to retrieve the rendered content
         return $pdf;
     }
 
-    /**
-     * Configure the parameters OptionsResolver.
-     *
-     * Use this method to specify default and required options
-     *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
-     */
-    protected function setDefaultParameters(OptionsResolverInterface $resolver)
+    public function generate(array $parameters = array(), array $options = array())
     {
-        $resolver->setRequired(array( ));
-        $resolver->setAllowedTypes(array( ));
+        return $this->doGenerate($parameters, $options);
     }
 }

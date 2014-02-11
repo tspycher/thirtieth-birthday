@@ -3,6 +3,7 @@
 namespace Tspycher\Bundle\ThirtiethBirthdayBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NoResultException;
 
 /**
  * PeopleRepository
@@ -14,12 +15,16 @@ class ParticipantRepository extends EntityRepository
 {
 
     public function getByCode($code) {
-        $query = $this->createQueryBuilder('p')
-            ->where('p.code = :code')
-            ->setParameter('code', $code)
-            ->getQuery()
-            ->getSingleResult();
-        return $query;
+        try {
+            $query = $this->createQueryBuilder('p')
+                ->where('p.code = :code')
+                ->setParameter('code', $code)
+                ->getQuery()
+                ->getSingleResult();
+            return $query;
+        } catch (NoResultException $e) {
+            return null;
+        }
         #return $this->findOneBy(array('code'=>$code));
     }
 
