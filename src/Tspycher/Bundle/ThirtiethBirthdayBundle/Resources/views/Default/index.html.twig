@@ -135,10 +135,10 @@
                                             <div class="panel-body">
                                                 <div class="radio">
                                                     <input ng-value="gift.id"
-                                                           ng-checked="!register.id_gift or register.id_gift == gift.id"
                                                            type="radio" ng-model="register.id_gift"
-                                                           name="register.id_gift" id="optionsRadios2"
-                                                           value="{{ gift.id }}">
+                                                           name="register_id_gift"
+                                                           ng-value="gift.id"
+                                                           required="1">
 
                                                     <div class="media">
                                                         <a class="pull-left" href="#">
@@ -175,6 +175,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="radio">
@@ -188,6 +190,9 @@
                                             <p class="list-group-item-text">Das geht natürlich auch :)</p>
                                         </div>
                                     </div>
+                                    <span class="error"
+                                           ng-show="participate.register_id_gift.$error.required">Zwingend!</span>
+
                                     <div class="form-group">
                                         <label for="giftAmount">Beteiligung</label>
                                         <input id="giftAmount" type="number" name="register_amount"

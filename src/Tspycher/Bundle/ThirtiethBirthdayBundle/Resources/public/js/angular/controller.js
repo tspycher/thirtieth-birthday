@@ -96,6 +96,7 @@ function ParticipantController($scope, $http) {
             $scope.setDanger("Bitte überprüfe die Felder in der Anmeldung");
             return;
         }
+
         $http.post('/api/participants.json', $scope.register, {'Content-Type': 'application/json'}).success(function(data) {
             if(!$scope.edit) {
                 $scope.loadToken(data);
@@ -105,7 +106,9 @@ function ParticipantController($scope, $http) {
             }
             $scope.register = {}
             $scope.loadGifts();
-            $scope.accountInfo = true;
+            if ($scope.register.id_gift != 0) {
+                $scope.accountInfo = true;
+            }
         }).error(function(data) {
                 $scope.setDanger("Sorry, ich konnte dich nicht registrieren");
             });

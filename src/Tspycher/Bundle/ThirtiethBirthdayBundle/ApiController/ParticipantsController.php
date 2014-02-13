@@ -48,7 +48,7 @@ class ParticipantsController extends Controller {
 
     private function sendMail($name, $to, $code) {
         $message = \Swift_Message::newInstance()
-            ->setSubject('Hello Email')
+            ->setSubject(sprintf("%s Danke für die Anmeldung zu meinem 30igsten Geburtstag", $name))
             ->setFrom('me@tspycher.com')
             ->setTo($to)
             ->setBody(
