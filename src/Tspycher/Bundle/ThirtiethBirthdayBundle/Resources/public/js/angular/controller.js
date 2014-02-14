@@ -6,7 +6,9 @@ function ParticipantController($scope, $http) {
 
     $scope.register = {id_participant: 0, id_people: 0};
     $scope.edit = false;
+    $scope.newTron = false;
     $scope.accountInfo = null;
+    $scope.token = null;
 
     $scope.loadGifts = function () {
         $http.get('/api/gifts.json').
@@ -43,6 +45,15 @@ function ParticipantController($scope, $http) {
             $scope.editButtonLabel = "Anmelden";
             $scope.edit = false;
         }
+
+    }
+
+    $scope.setAccountInfo = function () {
+        if ($scope.register.id_gift == 0) {
+            $scope.accountInfo = false;
+        } else {
+            $scope.accountInfo = true;
+        }
     }
 
     /**
@@ -53,6 +64,8 @@ function ParticipantController($scope, $http) {
             success(function(data) {
                 $scope.editmode(true);
                 $scope.getParicipantCount();
+                $scope.token = $scope.login.token;
+                console.log($scope.token);
                 /**this.register.name = "blubb";**/
                 $scope.register = {
                     name: data.people.name,
@@ -60,15 +73,16 @@ function ParticipantController($scope, $http) {
                     email: data.people.email,
                     id_participant: data.id,
                     id_people: data.people.id
-
                 };
-                $scope.accountInfo = true;
+
                 if(data.people.donate) {
                     $scope.register.id_gift = data.people.donate.gift.id;
                     $scope.register.giftAmount = data.people.donate.amount;
                 } else {
                     $scope.register.id_gift = 0;
                 }
+
+                $scope.setAccountInfo();
             }).error(function(data) {
                 $scope.seatsCount = 0;
                 $scope.participants = 0;
@@ -76,9 +90,10 @@ function ParticipantController($scope, $http) {
     }
 
     $scope.loadToken = function (data) {
-        $scope.getParicipantCount();
+        console.log(data);
         $scope.token = data.code;
-        $scope.accountInfo = true;
+        $scope.getParicipantCount();
+        $scope.setAccountInfo();
     }
 
     $scope.setSuccess = function (text) {
@@ -99,6 +114,8 @@ function ParticipantController($scope, $http) {
 
         $http.post('/api/participants.json', $scope.register, {'Content-Type': 'application/json'}).success(function(data) {
             if(!$scope.edit) {
+                $scope.newTron = true;
+
                 $scope.loadToken(data);
                 $scope.setSuccess("Super, ich freue mich auf dich");
             } else {
@@ -106,9 +123,8 @@ function ParticipantController($scope, $http) {
             }
             $scope.register = {}
             $scope.loadGifts();
-            if ($scope.register.id_gift != 0) {
-                $scope.accountInfo = true;
-            }
+            $scope.setAccountInfo();
+
         }).error(function(data) {
                 $scope.setDanger("Sorry, ich konnte dich nicht registrieren");
             });
@@ -117,6 +133,7 @@ function ParticipantController($scope, $http) {
 
     $scope.gotoCertificate = function () {
         window.location = '/certificate/'+$scope.token;
+        //console.log($scope.token);
     }
     $scope.getParicipantCount();
     $scope.loadGifts();
