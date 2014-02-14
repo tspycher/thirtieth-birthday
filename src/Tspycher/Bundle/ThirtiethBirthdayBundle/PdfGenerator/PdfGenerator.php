@@ -23,18 +23,22 @@ class PdfGenerator extends AbstractPdfGenerator
 
         $builder->addPage();
         $bMargin = $builder->getBreakMargin();
-        $auto_page_break = $builder->getAutoPageBreak();
+        #$auto_page_break = $builder->getAutoPageBreak();
         $builder->SetAutoPageBreak(false, 0);
         $img_file = __DIR__ .'/../Resources/public/img/certificate.jpg';
-        $builder->Image($img_file, 0, 0, 215, 280, '', '', '', false, 300, '', false, false, 0);
+        $builder->Image($img_file, 0, 0, 216, 278, '', '', '', false, 300, '', false, false, 0);
 
-        $builder->SetAutoPageBreak($auto_page_break, $bMargin);
+        $builder->SetAutoPageBreak(false, $bMargin);
         $builder->setPageMark();
 
         // Add content
         //courierB
         $builder->SetFont('courier', '', 16);
-        $builder->writeHTMLCell(215, 100, 0, 125, $this->render('TspycherThirtiethBirthdayBundle:Pdf:certificate.html.twig', $parameters), 0, 0, 0, true);
+        $builder->writeHTMLCell(215, 100, 2, 118, $this->render('TspycherThirtiethBirthdayBundle:Pdf:certificate.html.twig', $parameters), 0, 0, 0, true);
+
+        $builder->SetFont('times', '', 12);
+        $builder->writeHTMLCell(215, 100, 2, 201, '<span style="text-align: center;">1984</span>', 0, 0, 0, true);
+        $builder->writeHTMLCell(215, 100, 51, 196, date("d.m.Y"), 0, 0, 0, true);
 
         #$builder->writeHTML($this->render('TspycherThirtiethBirthdayBundle:Pdf:certificate.html.twig', $parameters), true, false, true, false, '');
         $builder->setPrintHeader(false);
