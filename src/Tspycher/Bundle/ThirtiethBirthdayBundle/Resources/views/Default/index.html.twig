@@ -7,11 +7,25 @@
     <div ng-app="myApp" ng-controller="ParticipantController">
     <div class="row">
 
-    <h1>Mein 30igster Geburtstag</h1>
-
-    <p class="lead">Aktuell kommen {{ seatsCount }} Leute aus insgesammt {{ participants }} Anmeldungen</p>
-
-
+    <div class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object img-circle" src="https://farm8.staticflickr.com/7407/11624694454_8bd973fca6_q.jpg" alt="...">
+        </a>
+        <div class="media-body">
+            <h1 class="media-heading">Mein 30igster Geburtstag</h1>
+            <p class="lead">Aktuell kommen {{ seatsCount }} Leute aus insgesammt {{ participants }} Anmeldungen</p>
+            <p>Sehr gerne möchte ich Dich/Euch zu meinem Geburtstag einladen. Ich glaube es selbst kaum, dass ich dreissig Jahre alt werde!</p>
+            <ul id="socialIcons">
+                <li>
+                    <a href="http://facebook.com/tspycher" target="_blank"><img id="facebookIcon" src="/bundles/tspycherthirtiethbirthday/img/Facebook.png" title="Find me on Facebook" /></a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/tspycher" target="_blank"><img id="twitterIcon" src="/bundles/tspycherthirtiethbirthday/img/Twitter.png" title=" Find me on Twitter" /></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br />
     <div class="panel-group" id="accordion">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -24,8 +38,6 @@
         <div id="collapseOne" class="panel-collapse collapse in">
             <div class="panel-body">
                 <p>
-                    Sehr gerne möchte ich Dich/Euch zu meinem Geburtstag einladen. Ich glaube es selbst kaum, dass ich
-                    dreissig Jahre alt werde!
                     Dieses Ereignis möchte ich mit euch feiern. Aus diesem Grund habe ich die Walthütte in
                     Lausen reserviert.
                 </p>
@@ -64,8 +76,10 @@
                             <div class="modal-body">
                                 <!-- Responsive iFrame -->
                                 <div class="Flexible-container">
-                                    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                                            src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=Bern&amp;aq=&amp;sll=46.813187,8.22421&amp;sspn=3.379772,8.453979&amp;ie=UTF8&amp;hq=&amp;hnear=Waldhütte&amp;t=m&amp;z=12&amp;ll=46.947922,7.444608&amp;output=embed&amp;iwloc=near"></iframe>
+                                    <!-- 47.483467, 7.772727 -->
+                                    <iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zYtdiGAEho00.kOJBB76fzWhg&z=6" width="540" height="340"></iframe>                                    <img src="http://lausen.gemeinde.ch/images/db/image003.jpg">
+                                    <img src="http://lausen.gemeinde.ch/images/db/image005.jpg">
+                                    <img src="http://lausen.gemeinde.ch/images/db/image001.jpg">
                                 </div>
                             </div>
                             <div class="modal-footer">

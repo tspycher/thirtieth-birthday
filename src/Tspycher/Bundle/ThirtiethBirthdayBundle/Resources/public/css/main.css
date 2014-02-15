@@ -17,6 +17,20 @@
 body {
 
 }
+/***************************************************/
+/*   Social network icons                          */
+/***************************************************/
 
+
+#socialIcons {
+    list-style: none;
+    bottom: 0;
+}
+
+
+#socialIcons li {
+    float: left;
+    margin-right: 6px;
+}
 
 
