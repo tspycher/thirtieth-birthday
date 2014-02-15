@@ -118,7 +118,7 @@ function ParticipantController($scope, $http) {
                 $scope.newTron = true;
 
                 $scope.loadToken(data);
-                $scope.setSuccess("Super, ich freue mich auf dich");
+                $scope.setSuccess("Super, ich freue mich auf dich/euch!");
             } else {
                 $scope.setSuccess("Deine Änderungen sind gespeichert");
             }

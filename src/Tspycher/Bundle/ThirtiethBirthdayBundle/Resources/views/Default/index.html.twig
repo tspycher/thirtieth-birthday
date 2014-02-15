@@ -13,8 +13,8 @@
         </a>
         <div class="media-body">
             <h1 class="media-heading">Mein 30igster Geburtstag</h1>
-            <p class="lead">Aktuell kommen {{ seatsCount }} Leute aus insgesammt {{ participants }} Anmeldungen</p>
-            <p>Sehr gerne möchte ich Dich/Euch zu meinem Geburtstag einladen. Ich glaube es selbst kaum, dass ich dreissig Jahre alt werde!</p>
+            <p class="lead">Aktuell kommen {{ seatsCount }} Personen aus insgesamt {{ participants }} Anmeldungen</p>
+            <p>Sehr gerne möchte ich Dich/Euch zu meinem Geburtstag einladen. Ich glaube es selbst kaum, dass ich bereits dreissig Jahre alt werde!</p>
             <ul id="socialIcons">
                 <li>
                     <a href="http://facebook.com/tspycher" target="_blank"><img id="facebookIcon" src="/bundles/tspycherthirtiethbirthday/img/Facebook.png" title="Find me on Facebook" /></a>
@@ -38,8 +38,7 @@
         <div id="collapseOne" class="panel-collapse collapse in">
             <div class="panel-body">
                 <p>
-                    Dieses Ereignis möchte ich mit euch feiern. Aus diesem Grund habe ich die Walthütte in
-                    Lausen reserviert.
+                    Dieses Ereignis möchte ich gerne mit euch in der Waldhütte "Edleten" in Lausen feiern.
                 </p>
                 <div class="row">
                     <div class="col-md-3"><strong>Wo?</strong></div>
@@ -47,22 +46,22 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3"><strong>Wann?</strong></div>
-                    <div class="col-md-7">Samstag 31.05 15:00 Uhr</div>
+                    <div class="col-md-7">Samstag, 31. Mai 2014 ab 15:00 Uhr</div>
                 </div>
                 <div class="row">
                     <div class="col-md-3"><strong>Wo stelle ich mein Auto hin?</strong></div>
-                    <div class="col-md-7">Parkplätze hat es genug, auch wenn man vielleicht etwas kreativ sein muss</div>
+                    <div class="col-md-7">Parkplätze hat es genug, auch wenn man vielleicht etwas kreativ sein muss.</div>
                 </div>
                 <div class="row">
                     <div class="col-md-3"><strong>Hunger!?!?</strong></div>
-                    <div class="col-md-7">Fleisch und Würste hat es reichlich. Salate, Kuchen, Getränke, Wein und Bier hat's auch. Wer sich kulinarisch
-                    beteiligen möchte darf dies natürlich sehr gerne. Schreibt einfach <a href="mailto:me@ntschopp.ch">Nadine</a> eine Mail.</div>
+                    <div class="col-md-7">Fleisch, Würste und Slate hat es reichlich. Dessert, Soft-Getränke, Wein und Bier hat's auch. Wer sich kulinarisch
+                    beteiligen möchte darf dies natürlich sehr gerne tun. Schreibt einfach <a href="mailto:me@ntschopp.ch">Nadine</a> eine Mail.</div>
                 </div>
+                <br />
                 <p>
-                    Damit Ihr euch nicht den Kopf zerbrechen müsst, was ihr mitbringen könntet mache ich es euch einfach. Wenn Ihr euch hier
-                    für das Fest anmeldet, könnt Ihr euch auch gleich an einem grösseren Geschenk beteiligen. Die, die sich daran beteiligen, erhalten
-                    ein "Zertifikat" welches sie ausdrucken können, an eine Packung Kaugumme kleben und mir überreichen können wenn ihr wollt. Die
-                    Beteiligungen verwaltet Nadine für mich.
+                    Damit ihr euch nicht den Kopf zerbrechen müsst, was ihr mitbringen könntet, mache ich es euch dieses Jahr ganz einfach: Wenn ihr euch hier
+                    für das Fest anmeldet, könnt ihr euch an einem grösseren Geschenk beteiligen - natürlich nur wenn ihr wollt. Die, die sich daran beteiligen, erhalten
+                    ein "Zertifikat", welches ausgedruckt mir überreicht werden kann. Die Beteiligungen verwaltet Nadine.
                 </p>
 
                 <!-- Modal -->
@@ -127,7 +126,7 @@
                                                           ng-show="participate.register_name.$error.required">Zwingend!</span>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Wieviele seid Ihr?</label>
+                                        <label for="name">Wie viele seid ihr?</label>
                                         <input type="number" class="form-control" name="register_number"
                                                placeholder="Anzahl Personen" ng-model="register.numPlaces"
                                                min="0" max="6" required="1">
@@ -178,8 +177,7 @@
                                                                 </div>
                                                             </div>
                                                             <p>
-                                                                <small>Es wurden bereits {{ gift.donated }}
-                                                                    CHF von {{ gift.price }} CHF verschenkt
+                                                                <small>Es wurden bereits CHF {{ gift.donated| number:0 }} von CHF {{ gift.price| number:0 }} verschenkt.
                                                                 </small>
                                                             </p>
                                                             <button class="btn btn-primary"
@@ -241,7 +239,7 @@
                                     <p>Merke dir bitte diesen Code
 
                                     <h1><span class="label label-default">{{ token }}</span></h1>
-                                    Mit dem kannst du dich hier wieder anmelden und Daten ändern.</p>
+                                    Mit diesem kannst du dich hier wieder anmelden und Daten ändern.</p>
                                 </div>
                             </div>
 
@@ -254,7 +252,7 @@
                                     <div class="form-group">
                                         <label for="token">Dein Code</label>
                                         <input id="token" type="text" class="form-control"
-                                               ng-model="login.token" placeholder="Token">
+                                               ng-model="login.token" placeholder="Code">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" ng-click="doLoadPartipate()"
@@ -268,7 +266,7 @@
                                                 <button ng-click="gotoCertificate()" class="btn btn-info btn-lg">Download Geschenkkarte</button>
                                         </span>
                                         <p>
-                                            Um es für Dich/Euch so einfach wie möglich zu machen, kannst du den Betrag
+                                            Um es so einfach wie möglich zu machen, kannst du den Betrag
                                             auf
                                             das folgende Konto überweisen, welches von Nadine verwaltet wird:
                                         </p>
@@ -278,8 +276,8 @@
                                         </p>
 
                                         <p>
-                                            Falls du einen anderen Weg bevorzugs melde dich doch bei <a
-                                                    href="mailto:me@ntschopp.ch">Nadine</a>
+                                            Falls du einen anderen Weg bevorzugstm melde dich doch direkt bei <a
+                                                    href="mailto:me@ntschopp.ch">Nadine</a>.
                                         </p>
                                     </div>
 
