@@ -49,10 +49,10 @@ function ParticipantController($scope, $http) {
     }
 
     $scope.setAccountInfo = function () {
-        if ($scope.register.id_gift == 0) {
-            $scope.accountInfo = false;
-        } else {
+        if ($scope.register.id_gift >= 1) {
             $scope.accountInfo = true;
+        } else {
+            $scope.accountInfo = false;
         }
     }
 
@@ -81,8 +81,9 @@ function ParticipantController($scope, $http) {
                 } else {
                     $scope.register.id_gift = 0;
                 }
-
                 $scope.setAccountInfo();
+
+
             }).error(function(data) {
                 $scope.seatsCount = 0;
                 $scope.participants = 0;
@@ -121,9 +122,10 @@ function ParticipantController($scope, $http) {
             } else {
                 $scope.setSuccess("Deine Änderungen sind gespeichert");
             }
+            $scope.setAccountInfo();
+
             $scope.register = {}
             $scope.loadGifts();
-            $scope.setAccountInfo();
 
         }).error(function(data) {
                 $scope.setDanger("Sorry, ich konnte dich nicht registrieren");
