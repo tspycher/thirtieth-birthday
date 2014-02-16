@@ -123,7 +123,7 @@
                                                name="register_name" placeholder="Name"
                                                ng-model="register.name" name="register.name" required="1">
                                                     <span class="error"
-                                                          ng-show="participate.register_name.$error.required">Zwingend!</span>
+                                                          ng-show="participate.register_name.$error.required">Information benötigt!</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Wie viele seid ihr?</label>
@@ -131,7 +131,7 @@
                                                placeholder="Anzahl Personen" ng-model="register.numPlaces"
                                                min="0" max="6" required="1">
                                                     <span class="error"
-                                                          ng-show="participate.register_number.$error.required">Zwingend!</span>
+                                                          ng-show="participate.register_number.$error.required">Information benötigt!</span>
                                                 <span class="error"
                                                     ng-show="participate.register_number.$error.number">Sorry, das ist keine Nummber!</span>
                                                 <span class="error"
@@ -143,7 +143,7 @@
                                                name="register_email" placeholder="Email"
                                                ng-model="register.email" required="1">
                                                     <span class="error"
-                                                          ng-show="participate.register_email.$error.required">Zwingend!</span>
+                                                          ng-show="participate.register_email.$error.required">Information benötigt!</span>
                                                     <span class="error"
                                                           ng-show="participate.register_email.$error.email">Keine gültige Email Adresse!</span>
                                     </div>
@@ -200,14 +200,14 @@
                                                     <input type="radio" ng-model="register.id_gift"
                                                            name="register.giftId" id="optionsRadios2"
                                                            value="0">
-                                                    <h4>Ich wähle selber</h4>
+                                                    <h4>Ich kümmere mich selber darum...</h4>
                                                 </label>
                                             </div>
                                             <p class="list-group-item-text">Das geht natürlich auch :)</p>
                                         </div>
                                     </div>
                                     <span class="error"
-                                           ng-show="participate.register_id_gift.$error.required">Zwingend!</span>
+                                           ng-show="participate.register_id_gift.$error.required">Information benötigt!</span>
 
                                     <div class="form-group">
                                         <label for="giftAmount">Beteiligung</label>
@@ -216,7 +216,7 @@
                                                placeholder="CHF" ng-required="register.id_gift != 0"
                                                ng-disabled="register.id_gift == 0">
                                                     <span class="error"
-                                                          ng-show="participate.register_amount.$error.required"> Zwingend!</span>
+                                                          ng-show="participate.register_amount.$error.required">Information benötigt!</span>
                                     </div>
                                     <div class="form-group">
                                         <button ng-click="doPartipate()" type="button"
@@ -276,7 +276,7 @@
                                         </p>
 
                                         <p>
-                                            Falls du einen anderen Weg bevorzugstm melde dich doch direkt bei <a
+                                            Falls du einen anderen Weg bevorzugst melde dich doch direkt bei <a
                                                     href="mailto:me@ntschopp.ch">Nadine</a>.
                                         </p>
                                     </div>

@@ -4,13 +4,13 @@ Vielen Dank für Deine/Eure Anmeldung! Die Anmeldung kannst du jederzeit über
 http://30.tspycher.com/ verändern, indem du den nachfolgenden Code unter "Anmeldung"
 eingibst:
 
-    {{ code }}
+    {{ participant.code }}
 
+{% if participant.people.donate %}
 Das Geschenkzertifikat kannst du dir jederzeit unter dieser URL herunterladen:
 
-{{ url('tspycher_thirtiethbirthday_default_certificate', { 'code': code}) }}
-
-
+{{ url('tspycher_thirtiethbirthday_default_certificate', { 'code': participant.code}) }}
+{% endif %}
 Bei Fragen wende dich direkt an mich me@tspycher.com oder an Nadine me@ntschopp.ch .
 
 Liebe Gruess und bis bald

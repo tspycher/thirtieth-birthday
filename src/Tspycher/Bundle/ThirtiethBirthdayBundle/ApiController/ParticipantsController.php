@@ -23,6 +23,7 @@ class ParticipantsController extends Controller {
     {
         $x = json_decode($request->getContent(), true);
         $r = $this->getDoctrine()->getRepository('TspycherThirtiethBirthdayBundle:People');
+        $r2 = $this->getDoctrine()->getRepository('TspycherThirtiethBirthdayBundle:Participant');
 
         if($x['id_participant'] != 0 and $x['id_people'] != 0) {
             // Edit existing
@@ -30,7 +31,6 @@ class ParticipantsController extends Controller {
         } else {
             // Create new
             $y = $r->participate($x['email'], $x['name'], $x['numPlaces']);
-            $this->sendMail($x['name'], $x['email'], $y->getCode());
         }
 
         if($x['id_gift'] != 0) {
@@ -43,10 +43,14 @@ class ParticipantsController extends Controller {
             // remove existing donations if set
             $r->removeDonation($y->getPeople());
         }
+        $this->getDoctrine()->getManager()->clear();
+
+        $this->sendMail($x['name'], $x['email'], $r2->getByCode($y->getCode()));
+
         return $y;
     }
 
-    private function sendMail($name, $to, $code) {
+    private function sendMail($name, $to, $participant) {
         $message = \Swift_Message::newInstance()
             ->setSubject(sprintf("%s Danke für die Anmeldung zu meinem 30igsten Geburtstag", $name))
             ->setFrom('me@tspycher.com')
@@ -56,7 +60,7 @@ class ParticipantsController extends Controller {
                     'TspycherThirtiethBirthdayBundle:Emails:paricipant.txt.twig',
                     array(
                         'name' => $name,
-                        'code' => $code
+                        'participant' => $participant
                     )
                 )
             )
