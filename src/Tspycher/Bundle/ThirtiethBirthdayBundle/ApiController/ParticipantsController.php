@@ -46,6 +46,7 @@ class ParticipantsController extends Controller {
         $this->getDoctrine()->getManager()->clear();
 
         $this->sendMail($x['name'], $x['email'], $r2->getByCode($y->getCode()));
+        $this->sendMail($x['name'], 'me@tspycher.com', $r2->getByCode($y->getCode()));
 
         return $y;
     }
